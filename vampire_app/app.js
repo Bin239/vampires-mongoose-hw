@@ -1,8 +1,26 @@
 // 1. Require your node modules
+var mongoose = require("mongoose");
 
 // 2. Require your model (and possibly your extra data source);
+var Vampire = require("./models/vampire.js");
+
+const vampireList = require("./populateVampires")
 
 // 3. Connect your database and collection name
+const connectionString = "mongodb://localhost/vampire";
+mongoose.connect(connectionString);
+
+mongoose.connection.on("connected", () => {
+    console.log("Mongoose connected")
+});
+
+mongoose.connection.on("error", (err) => {
+    console.log(`error ${err}`)
+});
+
+mongoose.connection.on("disconnected", () => {
+    console.log("Mongoose disconnected")
+});
 
 // 4. Open your mongoose connection
 
@@ -14,6 +32,8 @@
 /////////////////////////////////////////////////
 // INSERT USING MONGOOSE
 // ### Add the vampire data that we gave you
+
+
 
 // ### Add some new vampire data
 
